@@ -17,14 +17,14 @@ import Mathlib.LinearAlgebra.FreeModule.Finite.Matrix
 
 This is the basis of the Fundamental Theorem of Galois Theory.
 Given a (finite) group `G` that acts on a field `F`, we define `FixedPoints.subfield G F`,
-the subfield consisting of elements of `F` fixed_points by every element of `G`.
+the subfield consisting of elements of `F` fixed by every element of `G`.
 
 This subfield is then normal and separable, and in addition if `G` acts faithfully on `F`
 then `finrank (FixedPoints.subfield G F) F = Fintype.card G`.
 
 ## Main Definitions
 
-- `FixedPoints.subfield G F`, the subfield consisting of elements of `F` fixed_points by every
+- `FixedPoints.subfield G F`, the subfield consisting of elements of `F` fixed by every
 element of `G`, where `G` is a group that acts on `F`.
 
 -/
@@ -40,7 +40,7 @@ variable {M : Type u} [Monoid M]
 variable (G : Type u) [Group G]
 variable (F : Type v) [Field F] [MulSemiringAction M F] [MulSemiringAction G F] (m : M)
 
-/-- The subfield of F fixed by the field endomorphism `m`. -/
+/-- The subfield of `F` fixed by the field endomorphism `m`. -/
 def FixedBy.subfield : Subfield F where
   carrier := fixedBy F m
   zero_mem' := smul_zero m

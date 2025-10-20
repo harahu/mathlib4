@@ -202,7 +202,7 @@ section SeparableAssumption
 variable [FiniteDimensional F E] [Algebra.IsSeparable F E]
 
 /-- **Primitive element theorem**: a finite separable field extension `E` of `F` has a
-  primitive element, i.e. there is an `α ∈ E` such that `F⟮α⟯ = (⊤ : Subalgebra F E)`. -/
+  primitive element, that is, some `α ∈ E` satisfies `F⟮α⟯ = (⊤ : Subalgebra F E)`. -/
 @[stacks 030N "The moreover part"]
 theorem exists_primitive_element : ∃ α : E, F⟮α⟯ = ⊤ := by
   rcases isEmpty_or_nonempty (Fintype F) with (F_inf | ⟨⟨F_finite⟩⟩)

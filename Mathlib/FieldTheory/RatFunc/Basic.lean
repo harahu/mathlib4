@@ -34,7 +34,7 @@ as the homomorphism retains the non-zero-divisor property:
     where `[CommRing K] [Field L]`
   - `RatFunc.liftAlgHom` lifts a `K[X] →ₐ[S] L` to a `RatFunc K →ₐ[S] L`,
     where `[CommRing K] [Field L] [CommSemiring S] [Algebra S K[X]] [Algebra S L]`
-This is satisfied by injective homs.
+This condition is satisfied by injective homomorphisms.
 
 We also have lifting homomorphisms of polynomials to other polynomials,
 with the same condition on retaining the non-zero-divisor property across the map:

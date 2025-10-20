@@ -17,28 +17,28 @@ closed subgroups of the Galois group.
 
 # Main definitions and results
 
-In `K/k`, for any intermediate field `L` :
+In `K/k`, for any intermediate field `L`:
 
 * `fixingSubgroup_isClosed` : the subgroup fixing `L` (`Gal(K/L)`) is closed.
 
 * `fixedField_fixingSubgroup` : the field fixed by the
   subgroup fixing `L` is equal to `L` itself.
 
-For any subgroup `H` of `Gal(K/k)` :
+For any subgroup `H` of `Gal(K/k)`:
 
 * `restrict_fixedField` : For a Galois intermediate field `M`, the fixed field of the image of `H`
   restricted to `M` is equal to the fixed field of `H` intersected with `M`.
 * `fixingSubgroup_fixedField` : If `H` is closed, the fixing subgroup of the fixed field of `H`
   is equal to `H` itself.
 
-The fundamental theorem of infinite Galois theory :
+The fundamental theorem of infinite Galois theory:
 
 * `IntermediateFieldEquivClosedSubgroup` : The order equivalence is given by mapping any
   intermediate field `L` to the subgroup fixing `L`, and the inverse maps any
   closed subgroup of `Gal(K/k)` `H` to the fixed field of `H`. The composition is equal to
   the identity as described in the lemmas above, and compatibility with the order follows easily.
 
-Special cases :
+Special cases:
 
 * `isOpen_iff_finite` : The fixing subgroup of an intermediate field `L` is open if and only if
   `L` is finite-dimensional.

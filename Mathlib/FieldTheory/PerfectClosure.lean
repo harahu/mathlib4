@@ -13,7 +13,7 @@ import Mathlib.FieldTheory.Perfect
 ## Main definitions
 
 - `PerfectClosure`: the perfect closure of a characteristic `p` ring, which is the smallest
-  extension that makes frobenius surjective.
+  extension that makes the Frobenius map surjective.
 
 - `PerfectClosure.mk K p (n, x)`: for `n : ℕ` and `x : K` this is `x ^ (p ^ -n)` viewed as
   an element of `PerfectClosure K p`. Every element of `PerfectClosure K p` is of this form
@@ -34,10 +34,10 @@ import Mathlib.FieldTheory.Perfect
   `PerfectClosure.mk_zero`, `PerfectClosure.mk_inv`, `PerfectClosure.mk_pow`:
   how to do multiplication, addition, etc. on elements of form `x ^ (p ^ -n)`.
 
-- `PerfectClosure.mk_eq_iff`: when does `x ^ (p ^ -n)` equal.
+- `PerfectClosure.mk_eq_iff`: characterizes when two expressions `x ^ (p ^ -n)` are equal.
 
-- `PerfectClosure.eq_iff`: same as `PerfectClosure.mk_eq_iff` but with additional assumption that
-  `K` being reduced, hence gives a simpler criterion.
+- `PerfectClosure.eq_iff`: same as `PerfectClosure.mk_eq_iff` but with the additional assumption
+  that `K` is reduced, hence gives a simpler criterion.
 
 - `PerfectClosure.instPerfectRing`: `PerfectClosure K p` is a perfect ring.
 

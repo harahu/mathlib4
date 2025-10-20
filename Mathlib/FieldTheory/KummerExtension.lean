@@ -11,7 +11,7 @@ import Mathlib.RingTheory.Norm.Basic
 /-!
 # Kummer Extensions
 
-## Main result
+## Main results
 - `isCyclic_tfae`:
 Suppose `L/K` is a finite extension of dimension `n`, and `K` contains all `n`-th roots of unity.
 Then `L/K` is cyclic iff

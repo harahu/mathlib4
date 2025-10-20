@@ -20,8 +20,8 @@ ring homomorphism `i : K →+* L`, as well as its basic properties.
   (`pNilradical_eq_bot'`). Equivalently, it is the ideal consisting of elements `x` such that
   `x ^ p ^ n = 0` for some `n` (`mem_pNilradical`).
 
-- `IsPRadical`: a ring homomorphism `i : K →+* L` of characteristic `p` rings is called `p`-radical,
-  if or any element `x` of `L` there is `n : ℕ` such that `x ^ (p ^ n)` is contained in `K`,
+- `IsPRadical`: a ring homomorphism `i : K →+* L` of characteristic `p` rings is called `p`-radical
+  if for any element `x` of `L` there is `n : ℕ` such that `x ^ (p ^ n)` is contained in `K`,
   and the kernel of `i` is contained in the `p`-nilradical of `K`.
   A generalization of purely inseparable extension for fields.
 
@@ -36,8 +36,8 @@ ring homomorphism `i : K →+* L`, as well as its basic properties.
   then any ring homomorphism `K →+* M` can be lifted to `L →+* M`.
   This is similar to `IsAlgClosed.lift` and `IsSepClosed.lift`.
 
-- `PerfectRing.liftEquiv`: `K →+* M` is one-to-one correspondence to `L →+* M`,
-  given by `PerfectRing.lift`. This is a generalization to `PerfectClosure.lift`.
+- `PerfectRing.liftEquiv`: `K →+* M` is in one-to-one correspondence with `L →+* M`,
+  given by `PerfectRing.lift`. This is a generalization of `PerfectClosure.lift`.
 
 - `IsPerfectClosure.equiv`: perfect closures of a ring are isomorphic.
 

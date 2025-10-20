@@ -20,11 +20,11 @@ inverse inclusion, thus making `Gal(K/k)` profinite as a limit of finite groups.
 
 In a field extension `K/k`
 
-* `finGaloisGroup L` : The (finite) Galois group `Gal(L/k)` associated to a
-  `L : FiniteGaloisIntermediateField k K` `L`.
+* `finGaloisGroup L` : The (finite) Galois group `Gal(L/k)` associated to
+  `L : FiniteGaloisIntermediateField k K`.
 
-* `finGaloisGroupMap` : For `FiniteGaloisIntermediateField` s `L₁` and `L₂` with `L₂ ≤ L₁`
-  giving the restriction of `Gal(L₁/k)` to `Gal(L₂/k)`
+* `finGaloisGroupMap` : For `FiniteGaloisIntermediateField`s `L₁` and `L₂` with `L₂ ≤ L₁`,
+  gives the restriction of `Gal(L₁/k)` to `Gal(L₂/k)`.
 
 * `finGaloisGroupFunctor` : The functor from `FiniteGaloisIntermediateField`
   (ordered by reverse inclusion) to `FiniteGrp`, mapping each `FiniteGaloisIntermediateField L`
@@ -42,7 +42,7 @@ In a field extension `K/k`
 * `InfiniteGalois.mulEquivToLimit_continuous` : The inverse of `InfiniteGalois.mulEquivToLimit`
   is continuous.
 
-* `InfiniteGalois.continuousMulEquivToLimit` ：The `ContinuousMulEquiv` between `Gal(K/k)` and
+* `InfiniteGalois.continuousMulEquivToLimit` : The `ContinuousMulEquiv` between `Gal(K/k)` and
   `limit (asProfiniteGaloisGroupFunctor k K)` given by `InfiniteGalois.mulEquivToLimit`
 
 * `InfiniteGalois.ProfiniteGalGrp` : `Gal(K/k)` as a profinite group as there is
@@ -58,15 +58,15 @@ variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
 section Profinite
 
-/-- The (finite) Galois group `Gal(L / k)` associated to a
-`L : FiniteGaloisIntermediateField k K` `L`. -/
+/-- The (finite) Galois group `Gal(L / k)` associated to
+`L : FiniteGaloisIntermediateField k K`. -/
 def FiniteGaloisIntermediateField.finGaloisGroup (L : FiniteGaloisIntermediateField k K) :
     FiniteGrp :=
   letI := AlgEquiv.fintype k L
   FiniteGrp.of Gal(L/k)
 
-/-- For `FiniteGaloisIntermediateField` s `L₁` and `L₂` with `L₂ ≤ L₁`
-  the restriction homomorphism from `Gal(L₁/k)` to `Gal(L₂/k)` -/
+/-- For `FiniteGaloisIntermediateField`s `L₁` and `L₂` with `L₂ ≤ L₁`,
+the restriction homomorphism from `Gal(L₁/k)` to `Gal(L₂/k)`. -/
 noncomputable def finGaloisGroupMap {L₁ L₂ : (FiniteGaloisIntermediateField k K)ᵒᵖ}
     (le : L₁ ⟶ L₂) : L₁.unop.finGaloisGroup ⟶ L₂.unop.finGaloisGroup :=
   haveI : Normal k L₂.unop := IsGalois.to_normal

@@ -21,8 +21,8 @@ a field structure, and so can all types with prime power cardinalities, and this
 
 * `Fintype.nonempty_field_iff`: A `Fintype` can be given a field structure iff its cardinality is a
   prime power.
-* `Infinite.nonempty_field` : Any infinite type can be endowed a field structure.
-* `Field.nonempty_iff` : There is a field structure on type iff its cardinality is a prime power.
+* `Infinite.nonempty_field` : Any infinite type can be endowed with a field structure.
+* `Field.nonempty_iff` : There is a field structure on a type iff its cardinality is a prime power.
 
 -/
 
@@ -51,13 +51,13 @@ theorem Fintype.not_isField_of_card_not_prime_pow {α} [Fintype α] [Ring α] :
     ¬IsPrimePow ‖α‖ → ¬IsField α :=
   mt fun h => Fintype.nonempty_field_iff.mp ⟨h.toField⟩
 
-/-- Any infinite type can be endowed a field structure. -/
+/-- Any infinite type can be endowed with a field structure. -/
 theorem Infinite.nonempty_field {α : Type u} [Infinite α] : Nonempty (Field α) := by
   suffices #α = #(FractionRing (MvPolynomial α <| ULift.{u} ℚ)) from
     (Cardinal.eq.1 this).map (·.field)
   simp
 
-/-- There is a field structure on type if and only if its cardinality is a prime power. -/
+/-- There is a field structure on a type if and only if its cardinality is a prime power. -/
 theorem Field.nonempty_iff {α : Type u} : Nonempty (Field α) ↔ IsPrimePow #α := by
   rw [Cardinal.isPrimePow_iff]
   obtain h | h := fintypeOrInfinite α

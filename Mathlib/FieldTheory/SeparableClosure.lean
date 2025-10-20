@@ -14,8 +14,8 @@ This file contains basics about the (relative) separable closure of a field exte
 
 ## Main definitions
 
-- `separableClosure`: the relative separable closure of `F` in `E`, or called maximal separable
-  subextension of `E / F`, is defined to be the intermediate field of `E / F` consisting of all
+- `separableClosure`: the relative separable closure of `F` in `E`, also called the maximal separable
+  subextension of `E / F`, defined to be the intermediate field of `E / F` consisting of all
   separable elements.
 
 - `SeparableClosure`: the absolute separable closure, defined to be the relative separable
@@ -31,7 +31,7 @@ This file contains basics about the (relative) separable closure of a field exte
 
 - `Field.finInsepDegree F E`: the finite inseparable degree $[E:F]_i$ of an algebraic extension
   `E / F` of fields, defined to be the degree of `E / separableClosure F E` as a natural number.
-  It is zero if such field extension is not finite.
+  It is zero if this field extension is not finite.
 
 ## Main results
 
