@@ -203,6 +203,9 @@ theorem vanishingIdeal_strictAnti_mono_iff {s t : Set (PrimeSpectrum R)} (hs : I
   rw [Set.ssubset_def, vanishingIdeal_anti_mono_iff hs, vanishingIdeal_anti_mono_iff ht,
     lt_iff_le_not_ge]
 
+@[deprecated (since := "2025-12-11")]
+alias vanishingIdeal_strict_anti_mono_iff := vanishingIdeal_strictAnti_mono_iff
+
 /-- The antitone order embedding of closed subsets of `Spec R` into ideals of `R`. -/
 def closedsEmbedding (R : Type*) [CommSemiring R] :
     (TopologicalSpace.Closeds <| PrimeSpectrum R)ᵒᵈ ↪o Ideal R :=

@@ -128,6 +128,9 @@ theorem strictConcaveOn_of_slope_strictAnti_adjacent (hs : Convex 𝕜 s)
   simp only [Pi.neg_apply]
   linear_combination hf hx hz hxy hyz
 
+@[deprecated (since := "2025-12-11")]
+alias strictConcaveOn_of_slope_strict_anti_adjacent := strictConcaveOn_of_slope_strictAnti_adjacent
+
 /-- A function `f : 𝕜 → 𝕜` is convex iff for any three points `x < y < z` the slope of the secant
 line of `f` on `[x, y]` is less than the slope of the secant line of `f` on `[y, z]`. -/
 theorem convexOn_iff_slope_mono_adjacent :
@@ -168,6 +171,10 @@ theorem strictConcaveOn_iff_slope_strictAnti_adjacent :
           x ∈ s → z ∈ s → x < y → y < z → (f z - f y) / (z - y) < (f y - f x) / (y - x) :=
   ⟨fun h => ⟨h.1, fun _ _ _ => h.slope_anti_adjacent⟩, fun h =>
     strictConcaveOn_of_slope_strictAnti_adjacent h.1 (@fun _ _ _ hx hy => h.2 hx hy)⟩
+
+@[deprecated (since := "2025-12-11")]
+alias strictConcaveOn_iff_slope_strict_anti_adjacent :=
+  strictConcaveOn_iff_slope_strictAnti_adjacent
 
 theorem ConvexOn.secant_mono_aux1 (hf : ConvexOn 𝕜 s f) {x y z : 𝕜} (hx : x ∈ s) (hz : z ∈ s)
     (hxy : x < y) (hyz : y < z) : (z - x) * f y ≤ (z - y) * f x + (y - x) * f z := by
