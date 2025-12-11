@@ -65,7 +65,7 @@ theorem convexOn_exp : ConvexOn ℝ univ exp :=
 
 /-- `Real.log` is strictly concave on `(0, +∞)`. -/
 theorem strictConcaveOn_log_Ioi : StrictConcaveOn ℝ (Ioi 0) log := by
-  apply strictConcaveOn_of_slope_strict_anti_adjacent (convex_Ioi (0 : ℝ))
+  apply strictConcaveOn_of_slope_strictAnti_adjacent (convex_Ioi (0 : ℝ))
   intro x y z (hx : 0 < x) (hz : 0 < z) hxy hyz
   have hy : 0 < y := hx.trans hxy
   trans y⁻¹

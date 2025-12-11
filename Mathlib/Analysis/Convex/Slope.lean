@@ -118,7 +118,7 @@ theorem strictConvexOn_of_slope_strict_mono_adjacent (hs : Convex 𝕜 s)
 /-- If for any three points `x < y < z`, the slope of the secant line of `f : 𝕜 → 𝕜` on `[x, y]` is
 strictly greater than the slope of the secant line of `f` on `[y, z]`, then `f` is strictly concave.
 -/
-theorem strictConcaveOn_of_slope_strict_anti_adjacent (hs : Convex 𝕜 s)
+theorem strictConcaveOn_of_slope_strictAnti_adjacent (hs : Convex 𝕜 s)
     (hf :
       ∀ {x y z : 𝕜},
         x ∈ s → z ∈ s → x < y → y < z → (f z - f y) / (z - y) < (f y - f x) / (y - x)) :
@@ -161,13 +161,13 @@ theorem strictConvexOn_iff_slope_strict_mono_adjacent :
 /-- A function `f : 𝕜 → 𝕜` is strictly concave iff for any three points `x < y < z` the slope of
 the secant line of `f` on `[x, y]` is strictly greater than the slope of the secant line of `f` on
 `[y, z]`. -/
-theorem strictConcaveOn_iff_slope_strict_anti_adjacent :
+theorem strictConcaveOn_iff_slope_strictAnti_adjacent :
     StrictConcaveOn 𝕜 s f ↔
       Convex 𝕜 s ∧
         ∀ ⦃x y z : 𝕜⦄,
           x ∈ s → z ∈ s → x < y → y < z → (f z - f y) / (z - y) < (f y - f x) / (y - x) :=
   ⟨fun h => ⟨h.1, fun _ _ _ => h.slope_anti_adjacent⟩, fun h =>
-    strictConcaveOn_of_slope_strict_anti_adjacent h.1 (@fun _ _ _ hx hy => h.2 hx hy)⟩
+    strictConcaveOn_of_slope_strictAnti_adjacent h.1 (@fun _ _ _ hx hy => h.2 hx hy)⟩
 
 theorem ConvexOn.secant_mono_aux1 (hf : ConvexOn 𝕜 s f) {x y z : 𝕜} (hx : x ∈ s) (hz : z ∈ s)
     (hxy : x < y) (hyz : y < z) : (z - x) * f y ≤ (z - y) * f x + (y - x) * f z := by
