@@ -12,7 +12,7 @@ public import Mathlib.CategoryTheory.Grothendieck
 # Structured Arrow Categories as strict functor to Cat
 
 Forming a structured arrow category `StructuredArrow d T` with `d : D` and `T : C ⥤ D` is strictly
-functorial in `S`, inducing a functor `Dᵒᵖ ⥤ Cat`. This file constructs said functor and proves
+functorial in `d`, inducing a functor `Dᵒᵖ ⥤ Cat`. This file constructs said functor and proves
 that, in the dual case, we can precompose it with another functor `L : E ⥤ D` to obtain a category
 equivalent to `Comma L T`.
 -/

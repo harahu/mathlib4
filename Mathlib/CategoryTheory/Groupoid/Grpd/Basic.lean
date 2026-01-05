@@ -12,8 +12,7 @@ public import Mathlib.CategoryTheory.Limits.Shapes.Products
 # Category of groupoids
 
 This file contains the definition of the category `Grpd` of all groupoids.
-In this category objects are groupoids and morphisms are functors
-between these groupoids.
+In this category, objects are groupoids and morphisms are functors between these groupoids.
 
 We also provide two “forgetting” functors: `objects : Grpd ⥤ Type`
 and `forgetToCat : Grpd ⥤ Cat`.

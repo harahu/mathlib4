@@ -17,7 +17,7 @@ A functor `F : C ⥤ D` is `κ`-accessible (`Functor.IsCardinalAccessible`)
 if it commutes with colimits of shape `J` where `J` is any `κ`-filtered category
 (that is essentially small relative to the universe `w` such that `κ : Cardinal.{w}`.).
 We also introduce another typeclass `Functor.IsAccessible` saying that there exists
-a regular cardinal `κ` such that `Functor.IsCardinalAccessible`.
+a regular cardinal `κ` such that `Functor.IsCardinalAccessible F κ` holds.
 
 An object `X` of a category is `κ`-presentable (`IsCardinalPresentable`)
 if the functor `Hom(X, _)` (i.e. `coyoneda.obj (op X)`) is `κ`-accessible.

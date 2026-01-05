@@ -46,7 +46,7 @@ theorem right_adjoint (sq : CommSq u (G.map i) p v) (adj : G ⊣ F) :
 
 variable (sq : CommSq u (G.map i) p v) (adj : G ⊣ F)
 
-/-- The liftings of a commutative are in bijection with the liftings of its (right)
+/-- The liftings of a commutative square are in bijection with the liftings of its (right)
 adjoint square. -/
 def rightAdjointLiftStructEquiv : sq.LiftStruct ≃ (sq.right_adjoint adj).LiftStruct where
   toFun l :=
@@ -90,7 +90,7 @@ theorem left_adjoint (sq : CommSq u i (F.map p) v) (adj : G ⊣ F) :
 
 variable (sq : CommSq u i (F.map p) v) (adj : G ⊣ F)
 
-/-- The liftings of a commutative are in bijection with the liftings of its (left)
+/-- The liftings of a commutative square are in bijection with the liftings of its (left)
 adjoint square. -/
 def leftAdjointLiftStructEquiv :
     sq.LiftStruct ≃ (sq.left_adjoint adj).LiftStruct where

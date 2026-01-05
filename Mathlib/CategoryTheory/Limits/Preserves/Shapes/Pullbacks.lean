@@ -78,7 +78,7 @@ def isLimitMapConePullbackConeEquiv :
           PullbackCone (G.map f) (G.map g)) :=
   (PullbackCone.mk _ _ comm).isLimitMapConeEquiv G
 
-/-- The property of preserving pullbacks expressed in terms of binary fans. -/
+/-- The property of preserving pullbacks expressed in terms of pullback cones. -/
 def isLimitPullbackConeMapOfIsLimit [PreservesLimit (cospan f g) G]
     (l : IsLimit (PullbackCone.mk h k comm)) :
     have : G.map h ≫ G.map f = G.map k ≫ G.map g := by rw [← G.map_comp, ← G.map_comp, comm]
@@ -171,12 +171,12 @@ namespace PushoutCocone
 
 variable {W X Y : C} {f : W ⟶ X} {g : W ⟶ Y} (c : PushoutCocone f g) (G : C ⥤ D)
 
-/-- The image of a pullback cone by a functor. -/
+/-- The image of a pushout cocone by a functor. -/
 abbrev map : PushoutCocone (G.map f) (G.map g) :=
   PushoutCocone.mk (G.map c.inl) (G.map c.inr) (by simpa using G.congr_map c.condition)
 
-/-- The map (as a cocone) of a pushout cocone is colimit iff
-the map (as a pushout cocone) is limit. -/
+/-- The map (as a cocone) of a pushout cocone is a colimit iff
+the mapped pushout cocone is a colimit. -/
 def isColimitMapCoconeEquiv :
     IsColimit (mapCocone G c) ≃ IsColimit (c.map G) :=
   (IsColimit.precomposeHomEquiv (diagramIsoSpan.{v₂} _).symm _).symm.trans <|

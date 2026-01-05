@@ -32,7 +32,7 @@ namespace CategoryTheory.ObjectProperty
 variable {C : Type u} [Category.{v} C] (P : ObjectProperty C) (κ : Cardinal.{w})
 
 /-- Given `P : ObjectProperty C` and `κ : Cardinal.{w}`, this is the closure
-of `P` under colimits of shape given by categories `J` such that
+of `P` under colimits of shapes given by categories `J` such that
 `Arrow J` is of cardinality `< κ`. -/
 def colimitsCardinalClosure : ObjectProperty C :=
   P.colimitsClosure (SmallCategoryCardinalLT.categoryFamily κ)

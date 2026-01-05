@@ -112,7 +112,7 @@ instance : IsIso (prodComparison G X Y) := by
   rw [← PreservesLimitPair.iso_hom]
   infer_instance
 
-/-- If the product comparison maps of `G` at every pair `(X,Y)` is an
+/-- If the product comparison map of `G` at each pair `(X,Y)` is an
 isomorphism, then `G` preserves binary products. -/
 lemma preservesBinaryProducts_of_isIso_prodComparison
     [HasBinaryProducts C] [HasBinaryProducts D]
@@ -193,7 +193,7 @@ instance : IsIso (coprodComparison G X Y) := by
   rw [← PreservesColimitPair.iso_hom]
   infer_instance
 
-/-- If the coproduct comparison maps of `G` at every pair `(X,Y)` is an
+/-- If the coproduct comparison map of `G` at each pair `(X,Y)` is an
 isomorphism, then `G` preserves binary coproducts. -/
 lemma preservesBinaryCoproducts_of_isIso_coprodComparison
     [HasBinaryCoproducts C] [HasBinaryCoproducts D]

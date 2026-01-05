@@ -22,7 +22,7 @@ Given two pseudofunctors `F` and `G`, we define:
   `η` and `θ` (between `F` and `G`).
 * `Pseudofunctor.StrongTrans.homCategory F G` : the category structure on strong transformations
   between `F` and `G`, where the morphisms are modifications, and composition is given by vertical
-  composition of modifications. Note that this a scoped instance in the `Pseudofunctor.StrongTrans`
+  composition of modifications. Note that this is a scoped instance in the `Pseudofunctor.StrongTrans`
   namespace, so you need to run `open scoped Pseudofunctor.StrongTrans` to access it.
 
 -/
@@ -134,7 +134,7 @@ structure Hom where
 
 /-- Category structure on the strong transformations between pseudofunctors.
 
-Note that this a scoped instance in the `Pseudofunctor.StrongTrans` namespace. -/
+Note that this is a scoped instance in the `Pseudofunctor.StrongTrans` namespace. -/
 @[simps!]
 scoped instance homCategory : Category (F ⟶ G) where
   Hom := Hom

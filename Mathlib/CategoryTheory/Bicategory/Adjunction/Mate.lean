@@ -131,7 +131,7 @@ and `l₂ ⊣ r₂` respectively).
       e ↔ f
 ```
 
-Then we have a bijection between natural transformations `g ≫ l₂ ⟶ l₁ ≫ h` and
+Then we have a bijection between 2-morphisms `g ≫ l₂ ⟶ l₁ ≫ h` and
 `r₁ ≫ g ⟶ h ≫ r₂`. This can be seen as a bijection of the 2-cells:
 
 ```
@@ -139,7 +139,7 @@ Then we have a bijection between natural transformations `g ≫ l₂ ⟶ l₁ �
       c --→ d             c ←-- d
     g ↓  ↗  ↓ h         g ↓  ↘  ↓ h
       e --→ f             e ←-- f
-         L₂                  R₂
+         l₂                  r₂
 ```
 
 Note that if one of the transformations is an iso, it does not imply the other is an iso.
@@ -667,12 +667,12 @@ variable {g : a ⟶ c} {h : b ⟶ d}
 variable {l₁ : a ⟶ b} {r₁ : b ⟶ a} {l₂ : c ⟶ d} {r₂ : d ⟶ c} {l₃ : c ⟶ d} {r₃ : d ⟶ c}
 variable (adj₁ : l₁ ⊣ r₁) (adj₂ : l₂ ⊣ r₂) (adj₃ : l₃ ⊣ r₃)
 
-/-- Composition of a squares between left adjoints with a conjugate square. -/
+/-- Composition of squares between left adjoints with a conjugate square. -/
 def leftAdjointSquareConjugate.vcomp (α : g ≫ l₂ ⟶ l₁ ≫ h) (β : l₃ ⟶ l₂) :
     g ≫ l₃ ⟶ l₁ ≫ h :=
   g ◁ β ≫ α
 
-/-- Composition of a squares between right adjoints with a conjugate square. -/
+/-- Composition of squares between right adjoints with a conjugate square. -/
 def rightAdjointSquareConjugate.vcomp (α : r₁ ≫ g ⟶ h ≫ r₂) (β : r₂ ⟶ r₃) :
     r₁ ≫ g ⟶ h ≫ r₃ :=
   α ≫ h ◁ β
@@ -705,12 +705,12 @@ variable {g : a ⟶ c} {h : b ⟶ d}
 variable {l₁ : a ⟶ b} {r₁ : b ⟶ a} {l₂ : a ⟶ b} {r₂ : b ⟶ a} {l₃ : c ⟶ d} {r₃ : d ⟶ c}
 variable (adj₁ : l₁ ⊣ r₁) (adj₂ : l₂ ⊣ r₂) (adj₃ : l₃ ⊣ r₃)
 
-/-- Composition of a conjugate square with a squares between left adjoints. -/
+/-- Composition of a conjugate square with squares between left adjoints. -/
 def leftAdjointConjugateSquare.vcomp (α : l₂ ⟶ l₁) (β : g ≫ l₃ ⟶ l₂ ≫ h) :
     g ≫ l₃ ⟶ l₁ ≫ h :=
   β ≫ α ▷ h
 
-/-- Composition of a conjugate square with a squares between right adjoints. -/
+/-- Composition of a conjugate square with squares between right adjoints. -/
 def rightAdjointConjugateSquare.vcomp (α : r₁ ⟶ r₂) (β : r₂ ≫ g ⟶ h ≫ r₃) :
     r₁ ≫ g ⟶ h ≫ r₃ :=
   α ▷ g ≫ β

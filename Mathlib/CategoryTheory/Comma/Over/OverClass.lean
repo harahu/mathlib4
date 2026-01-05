@@ -46,7 +46,7 @@ class OverClass (X S : C) : Type v where
   hom : X ⟶ S
 
 /--
-The structure morphism `X ↘ S : X ⟶ S` given `OverClass X S`.
+The structure morphism `X ↘ S : X ⟶ S` given an `OverClass X S`.
 The instance argument is an `optParam` instead so that it appears in the discrimination tree.
 -/
 def over (X S : C) (_ : OverClass X S := by infer_instance) : X ⟶ S := OverClass.hom

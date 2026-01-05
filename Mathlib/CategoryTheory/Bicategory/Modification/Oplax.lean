@@ -25,14 +25,14 @@ Given two oplax functors `F` and `G`, we define:
 * `OplaxTrans.Modification η θ`: modifications between oplax transformations `η` and `θ` between
   `F` and `G`.
 * `OplaxTrans.homCategory F G`: the category structure on the oplax transformations
-  between `F` and `G`, where composition is given by vertical composition. Note that this a scoped
+  between `F` and `G`, where composition is given by vertical composition. Note that this is a scoped
   instance in the `Oplax.OplaxTrans` namespace, so you need to run `open scoped Oplax.OplaxTrans`
   to access it.
 
 * `StrongTrans.Modification η θ`: modifications between strong transformations `η` and `θ` between
   `F` and `G`.
 * `StrongTrans.homCategory F G`: the category structure on the strong transformations
-  between `F` and `G`, where composition is given by vertical composition. Note that this a scoped
+  between `F` and `G`, where composition is given by vertical composition. Note that this is a scoped
   instance in the `Oplax.StrongTrans` namespace, so you need to run `open scoped Oplax.StrongTrans`
   to access it.
 
@@ -119,7 +119,7 @@ structure Hom where
 
 /-- Category structure on the oplax natural transformations between OplaxFunctors.
 
-Note that this a scoped instance in the `Oplax.OplaxTrans` namespace. -/
+Note that this is a scoped instance in the `Oplax.OplaxTrans` namespace. -/
 @[simps!]
 scoped instance homCategory : Category (F ⟶ G) where
   Hom := Hom
@@ -249,7 +249,7 @@ structure Hom where
 
 /-- Category structure on the strong natural transformations between oplax functors.
 
-Note that this a scoped instance in the `Oplax.StrongTrans` namespace. -/
+Note that this is a scoped instance in the `Oplax.StrongTrans` namespace. -/
 @[simps!]
 scoped instance homCategory : Category (F ⟶ G) where
   Hom := Hom

@@ -74,13 +74,13 @@ namespace Functor.IsPreFibered
 
 variable {p : 𝒳 ⥤ 𝒮} [IsPreFibered p] {R S : 𝒮} {a : 𝒳} (ha : p.obj a = S) (f : R ⟶ S)
 
-/-- Given a fibered category `p : 𝒳 ⥤ 𝒫`, a morphism `f : R ⟶ S` and an object `a` lying over `S`,
+/-- Given a fibered category `p : 𝒳 ⥤ 𝒮`, a morphism `f : R ⟶ S` and an object `a` lying over `S`,
 then `pullbackObj` is the domain of some choice of a Cartesian morphism lying over `f` with
 codomain `a`. -/
 noncomputable def pullbackObj : 𝒳 :=
   Classical.choose (IsPreFibered.exists_isCartesian p ha f)
 
-/-- Given a fibered category `p : 𝒳 ⥤ 𝒫`, a morphism `f : R ⟶ S` and an object `a` lying over `S`,
+/-- Given a fibered category `p : 𝒳 ⥤ 𝒮`, a morphism `f : R ⟶ S` and an object `a` lying over `S`,
 then `pullbackMap` is a choice of a Cartesian morphism lying over `f` with codomain `a`. -/
 noncomputable def pullbackMap : pullbackObj ha f ⟶ a :=
   Classical.choose (Classical.choose_spec (IsPreFibered.exists_isCartesian p ha f))

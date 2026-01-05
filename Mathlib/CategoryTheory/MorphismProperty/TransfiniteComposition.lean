@@ -16,8 +16,9 @@ public import Mathlib.Order.Shrink
 Given a well-ordered type `J`, `W : MorphismProperty C` and
 a morphism `f : X ⟶ Y`, we define a structure `W.TransfiniteCompositionOfShape J f`
 which expresses that `f` is a transfinite composition of shape `J` of morphisms in `W`.
-This structures extends `CategoryTheory.TransfiniteCompositionOfShape` which was
-defined in the file `CategoryTheory.Limits.Shape.Preorder.TransfiniteCompositionOfShape`.
+This structure extends `CategoryTheory.TransfiniteCompositionOfShape` which was
+defined in the file
+`Mathlib/CategoryTheory/Limits/Shapes/Preorder/TransfiniteCompositionOfShape.lean`.
 We use this structure in order to define the class of morphisms
 `W.transfiniteCompositionsOfShape J : MorphismProperty C`, and the type class
 `W.IsStableUnderTransfiniteCompositionOfShape J`.

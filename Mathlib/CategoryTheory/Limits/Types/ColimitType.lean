@@ -49,7 +49,7 @@ namespace Functor
 variable (F : J ⥤ Type w₀)
 
 /-- Given a functor `F : J ⥤ Type w₀`, this is a "cocone" of `F` where
-we allow the point `pt` to be in a different universe than `w`. -/
+we allow the point `pt` to be in a different universe than `w₀`. -/
 structure CoconeTypes where
   /-- the point of the cocone -/
   pt : Type w₁
@@ -88,7 +88,7 @@ def precompose (c : CoconeTypes.{w₁} F) {G : J ⥤ Type w₀'} (app : ∀ j, G
   ι_naturality f := by
     rw [Function.comp_assoc, naturality, ← Function.comp_assoc, ι_naturality]
 
-/-- Given `F : J ⥤ w₀`, `c : F.CoconeTypes` and `G : J' ⥤ J`, this is
+/-- Given `F : J ⥤ Type w₀`, `c : F.CoconeTypes` and `G : J' ⥤ J`, this is
 the induced cocone in `(G ⋙ F).CoconeTypes`. -/
 @[simps]
 def precomp (c : CoconeTypes.{w₁} F) {J' : Type*} [Category* J'] (G : J' ⥤ J) :

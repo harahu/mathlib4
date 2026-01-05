@@ -170,7 +170,7 @@ def id (M : Comon C) : Hom M M where
 instance homInhabited (M : Comon C) : Inhabited (Hom M M) :=
   ⟨id M⟩
 
-/-- Composition of morphisms of monoid objects. -/
+/-- Composition of morphisms of comonoid objects. -/
 @[simps]
 def comp {M N O : Comon C} (f : Hom M N) (g : Hom N O) : Hom M O where
   hom := f.hom ≫ g.hom

@@ -15,7 +15,7 @@ public import Mathlib.Algebra.Homology.ShortComplex.ExactFunctor
 # Projective objects in abelian categories
 
 In an abelian category, an object `P` is projective iff the functor
-`preadditiveCoyonedaObj (op P)` preserves finite colimits.
+`preadditiveCoyonedaObj P` preserves finite colimits.
 
 -/
 

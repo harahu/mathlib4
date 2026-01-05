@@ -174,7 +174,7 @@ instance [ObjectProperty.Small.{w} P] [LocallySmall.{w} C] [Small.{w} J] [Locall
   exact ⟨⟨P.lift F hF, by assumption⟩, rfl⟩
 
 /-- A property of objects satisfies `P.IsClosedUnderColimitsOfShape J` if it
-is stable by colimits of shape `J`. -/
+is stable under colimits of shape `J`. -/
 @[mk_iff]
 class IsClosedUnderColimitsOfShape (P : ObjectProperty C) (J : Type u') [Category.{v'} J] where
   colimitsOfShape_le (P J) : P.colimitsOfShape J ≤ P

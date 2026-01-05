@@ -15,7 +15,7 @@ Let `C` be a monoidal category equipped with a class of morphisms `W` which
 is compatible with the monoidal category structure: this means `W`
 is multiplicative and stable by left and right whiskerings (this is
 the type class `W.IsMonoidal`). Let `L : C ⥤ D` be a localization functor
-for `W`. In the file, we construct a monoidal category structure
+for `W`. In this file, we construct a monoidal category structure
 on `D` such that the localization functor is monoidal. The structure
 is actually defined on a type synonym `LocalizedMonoidal L W ε`.
 Here, the data `ε : L.obj (𝟙_ C) ≅ unit` is an isomorphism to some

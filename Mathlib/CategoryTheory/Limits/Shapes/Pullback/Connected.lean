@@ -22,8 +22,8 @@ namespace CategoryTheory.Limits
 
 /--
 Let `F` and `G` be two diagrams indexed by a connected `I`, and `X` and `Y` be two cones over
-`F` and `G` respectively, with maps `α : F ⟶ G` and `f : X ⟶ Y` that commutes with the cone maps.
-Suppose `X = Y x[G i] F i` for all `i` and `Y = lim G`, then `X = lim F`.
+`F` and `G` respectively, with maps `α : F ⟶ G` and `f : X ⟶ Y` that commute with the cone maps.
+Suppose `X = Y ×[G i] F i` for all `i` and `Y = lim G`, then `X = lim F`.
 -/
 noncomputable
 def isLimitOfIsPullbackOfIsConnected
@@ -49,7 +49,7 @@ def isLimitOfIsPullbackOfIsConnected
 
 /--
 Let `F` and `G` be two diagrams indexed by a connected `I`, and `X` and `Y` be two cocones over
-`F` and `G` respectively, with maps `α : F ⟶ G` and `f : X ⟶ Y` that commutes with the cocone maps.
+`F` and `G` respectively, with maps `α : F ⟶ G` and `f : X ⟶ Y` that commute with the cocone maps.
 Suppose `Y = X ⨿[F i] G i` for all `i` and `Y = colim G`, then `X = colim F`.
 -/
 noncomputable

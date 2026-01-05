@@ -14,8 +14,7 @@ public import Mathlib.CategoryTheory.Types.Basic
 # Category of categories
 
 This file contains the definition of the category `Cat` of all categories.
-In this category objects are categories and
-morphisms are functors between these categories.
+In this category, objects are categories and morphisms are functors between these categories.
 
 ## Implementation notes
 

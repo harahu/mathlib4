@@ -67,7 +67,7 @@ namespace CategoryTheory.Limits.Concrete
 
 section Limits
 
-/-- If a functor `G : J ⥤ C` to a concrete category has a limit and that `forget C`
+/-- If a functor `G : J ⥤ C` to a concrete category has a limit and the forgetful functor
 is corepresentable, then `(G ⋙ forget C).sections` is small. -/
 lemma small_sections_of_hasLimit
     {C : Type u} [Category.{v} C] [HasForget.{v} C]

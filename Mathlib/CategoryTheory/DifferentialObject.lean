@@ -54,7 +54,7 @@ namespace DifferentialObject
 /-- A morphism of differential objects is a morphism commuting with the differentials. -/
 @[ext]
 structure Hom (X Y : DifferentialObject S C) where
-  /-- The morphism between underlying objects of the two differentiable objects. -/
+  /-- The morphism between underlying objects of the two differential objects. -/
   f : X.obj ⟶ Y.obj
   comm : X.d ≫ f⟦1⟧' = f ≫ Y.d := by cat_disch
 
