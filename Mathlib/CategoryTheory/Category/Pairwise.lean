@@ -57,7 +57,7 @@ instance pairwiseInhabited [Inhabited ι] : Inhabited (Pairwise ι) :=
   ⟨single default⟩
 
 /-- Morphisms in the category `Pairwise ι`. The only non-identity morphisms are
-`left i j : single i ⟶ pair i j` and `right i j : single j ⟶ pair i j`.
+`left i j : pair i j ⟶ single i` and `right i j : pair i j ⟶ single j`.
 -/
 inductive Hom : Pairwise ι → Pairwise ι → Type v
   | id_single : ∀ i, Hom (single i) (single i)

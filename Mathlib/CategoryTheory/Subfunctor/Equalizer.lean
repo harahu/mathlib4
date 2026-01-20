@@ -13,7 +13,7 @@ public import Mathlib.CategoryTheory.Subfunctor.Image
 
 If `F₁` and `F₂` are type-valued functors, `A : Subfunctor F₁`, and
 `f` and `g` are two morphisms `A.toFunctor ⟶ F₂`, we introduce
-`Subcomplex.equalizer f g`, which is the subfunctor of `F₁` contained in `A`
+`Subfunctor.equalizer f g`, which is the subfunctor of `F₁` contained in `A`
 where `f` and `g` coincide.
 
 -/
@@ -29,8 +29,8 @@ variable {C : Type u} [Category.{v} C] {F₁ F₂ : C ⥤ Type w} {A : Subfuncto
 
 namespace Subfunctor
 
-/-- The equalizer of two morphisms of type-valued functors of types of the form
-`A.toFunctor ⟶ F₂` with `A : Subfunctor F₁`, as a subcomplex of `F₁`. -/
+/-- The equalizer of two morphisms of type-valued functors of the form
+`A.toFunctor ⟶ F₂` with `A : Subfunctor F₁`, as a subfunctor of `F₁`. -/
 @[simps -isSimp]
 protected def equalizer : Subfunctor F₁ where
   obj U := setOf (fun x ↦ ∃ (hx : x ∈ A.obj _), f.app _ ⟨x, hx⟩ = g.app _ ⟨x, hx⟩)

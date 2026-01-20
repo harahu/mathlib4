@@ -19,7 +19,7 @@ public import Mathlib.CategoryTheory.Action.Limits
 
 We show:
 
-* When `V` is monoidal, braided, or symmetric, so is `Action V G`.
+* When `V` is monoidal, braided, symmetric, or rigid, so is `Action V G`.
 -/
 
 @[expose] public section
@@ -69,7 +69,7 @@ instance : (Action.forget V G).Monoidal :=
 open Functor.LaxMonoidal Functor.OplaxMonoidal
 
 @[simp] lemma forget_ε : ε (Action.forget V G) = 𝟙 _ := rfl
-@[simp] lemma forget_η : ε (Action.forget V G) = 𝟙 _ := rfl
+@[simp] lemma forget_η : η (Action.forget V G) = 𝟙 _ := rfl
 
 variable {V G}
 

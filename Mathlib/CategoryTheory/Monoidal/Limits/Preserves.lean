@@ -23,7 +23,7 @@ variable {C : Type*} [Category* C] [MonoidalCategory C]
 
 section Colimits
 
-/-- When `C` is braided and `tensorLeft c` preserves a colimit, then so does `tensorRight k`. -/
+/-- When `C` is braided and `tensorLeft c` preserves a colimit, then so does `tensorRight c`. -/
 instance preservesColimit_of_braided_and_preservesColimit_tensor_left
     [BraidedCategory C] (c : C)
     [PreservesColimit F (tensorLeft c)] :
@@ -48,7 +48,7 @@ end Colimits
 
 section Limits
 
-/-- When `C` is braided and `tensorLeft c` preserves a limit, then so does `tensorRight k`. -/
+/-- When `C` is braided and `tensorLeft c` preserves a limit, then so does `tensorRight c`. -/
 instance preservesLimit_of_braided_and_preservesLimit_tensor_left
     [BraidedCategory C] (c : C)
     [PreservesLimit F (tensorLeft c)] :

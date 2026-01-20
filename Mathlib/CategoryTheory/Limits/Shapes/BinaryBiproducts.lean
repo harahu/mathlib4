@@ -22,7 +22,7 @@ For results about biproducts in preadditive categories see
 
 In a category with zero morphisms, we model the (binary) biproduct of `P Q : C`
 using a `BinaryBicone`, which has a cone point `X`,
-and morphisms `fst : X ⟶ P`, `snd : X ⟶ Q`, `inl : P ⟶ X` and `inr : X ⟶ Q`,
+and morphisms `fst : X ⟶ P`, `snd : X ⟶ Q`, `inl : P ⟶ X` and `inr : Q ⟶ X`,
 such that `inl ≫ fst = 𝟙 P`, `inl ≫ snd = 0`, `inr ≫ fst = 0`, and `inr ≫ snd = 𝟙 Q`.
 Such a `BinaryBicone` is a biproduct if the cone is a limit cone, and the cocone is a colimit
 cocone.

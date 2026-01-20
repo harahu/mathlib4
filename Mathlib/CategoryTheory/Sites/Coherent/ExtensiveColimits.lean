@@ -13,7 +13,7 @@ public import Mathlib.CategoryTheory.Sites.Limits
 # Colimits in categories of extensive sheaves
 
 This file proves that `J`-shaped colimits of `A`-valued sheaves for the extensive topology are
-computed objectwise if `colim : J ⥤ A ⥤ A` preserves finite products.
+computed objectwise if `colim : (J ⥤ A) ⥤ A` preserves finite products.
 
 This holds for all shapes `J` if `A` is a preadditive category.
 

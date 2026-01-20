@@ -13,7 +13,7 @@ public import Mathlib.CategoryTheory.Monoidal.Types.Coyoneda
 
 If `V` is a monoidal category, a `V`-enriched category `C` does not need
 to be a category. However, when we have both `Category C` and `EnrichedCategory V C`,
-we may require that the type of morphisms `X ⟶ Y` in `C` identify to
+we may require that the type of morphisms `X ⟶ Y` in `C` identify with
 `𝟙_ V ⟶ EnrichedCategory.Hom X Y`. This data shall be packaged in the
 typeclass `EnrichedOrdinaryCategory V C`.
 
@@ -39,9 +39,9 @@ variable (V : Type u') [Category.{v'} V] [MonoidalCategory V]
 
 /-- An enriched ordinary category is a category `C` that is also enriched
 over a category `V` in such a way that morphisms `X ⟶ Y` in `C` identify
-to morphisms `𝟙_ V ⟶ (X ⟶[V] Y)` in `V`. -/
+with morphisms `𝟙_ V ⟶ (X ⟶[V] Y)` in `V`. -/
 class EnrichedOrdinaryCategory extends EnrichedCategory V C where
-  /-- morphisms `X ⟶ Y` in the category identify morphisms `𝟙_ V ⟶ (X ⟶[V] Y)` in `V` -/
+  /-- morphisms `X ⟶ Y` in the category identify with morphisms `𝟙_ V ⟶ (X ⟶[V] Y)` in `V` -/
   homEquiv {X Y : C} : (X ⟶ Y) ≃ (𝟙_ V ⟶ (X ⟶[V] Y))
   homEquiv_id (X : C) : homEquiv (𝟙 X) = eId V X := by cat_disch
   homEquiv_comp {X Y Z : C} (f : X ⟶ Y) (g : Y ⟶ Z) :

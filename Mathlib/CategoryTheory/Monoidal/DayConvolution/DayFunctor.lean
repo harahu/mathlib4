@@ -169,7 +169,7 @@ lemma η_comp_tensorDesc_app {F G H : C ⊛⥤ V}
 
 open LawfulDayConvolutionMonoidalCategoryStruct
 /-- An abstract isomorphism between `(F ⊗ G).functor` and the generic pointwise
-left Kan extension of `F.functor ⊠ G.functor` along the -/
+left Kan extension of `F.functor ⊠ G.functor` along `tensor C`. -/
 def isoPointwiseLeftKanExtension (F G : C ⊛⥤ V) :
     (F ⊗ G).functor ≅
     (tensor C).pointwiseLeftKanExtension (F.functor ⊠ G.functor) :=

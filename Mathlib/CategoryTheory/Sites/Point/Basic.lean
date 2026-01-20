@@ -24,7 +24,7 @@ of some `y : Φ.fiber.obj Y` by a morphism `f : Y ⟶ X` which belongs to `R`.
 from SGA 4 IV 6.3.)
 
 The fact that `Φ.fiber.Elementsᵒᵖ` is filtered allows to define
-`Φ.presheafFiber : (Cᵒᵖ ⥤ A) ⥤ A` by taking the filtering colimit
+`Φ.presheafFiber : (Cᵒᵖ ⥤ A) ⥤ A` by taking the filtered colimit
 of the evaluation functors at `op X` when `(X : C, x : F.obj X)` varies in
 `Φ.fiber.Elementsᵒᵖ`. We define `Φ.sheafFiber : Sheaf J A ⥤ A` as the
 restriction of `Φ.presheafFiber` to the full subcategory of sheaves.

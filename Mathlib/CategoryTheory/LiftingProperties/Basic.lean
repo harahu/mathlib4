@@ -41,7 +41,7 @@ variable {C : Type*} [Category* C] {A B B' X Y Y' : C} (i : A ⟶ B) (i' : B ⟶
 property with respect to `p`, or equivalently that `p` has
 the right lifting property with respect to `i`. -/
 class HasLiftingProperty : Prop where
-  /-- Unique field expressing that any commutative square built from `f` and `g` has a lift -/
+  /-- Unique field expressing that any commutative square built from `i` and `p` has a lift -/
   sq_hasLift : ∀ {f : A ⟶ X} {g : B ⟶ Y} (sq : CommSq f i p g), sq.HasLift
 
 instance (priority := 100) sq_hasLift_of_hasLiftingProperty {f : A ⟶ X} {g : B ⟶ Y}

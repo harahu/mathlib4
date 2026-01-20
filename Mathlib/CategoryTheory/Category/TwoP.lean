@@ -33,7 +33,7 @@ variable {α β : Type*}
 structure TwoP : Type (u + 1) where
   /-- The underlying type of a two-pointed type. -/
   protected X : Type u
-  /-- The two points of a bipointed type, bundled together as a pair of distinct elements. -/
+  /-- The two points of a two-pointed type, bundled together as a pair of distinct elements. -/
   toTwoPointing : TwoPointing X
 
 namespace TwoP

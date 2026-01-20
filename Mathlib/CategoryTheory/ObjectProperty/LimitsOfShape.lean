@@ -172,7 +172,7 @@ instance [ObjectProperty.Small.{w} P] [LocallySmall.{w} C] [Small.{w} J] [Locall
   infer_instance
 
 /-- A property of objects satisfies `P.IsClosedUnderLimitsOfShape J` if it
-is stable by limits of shape `J`. -/
+is stable under limits of shape `J`. -/
 @[mk_iff]
 class IsClosedUnderLimitsOfShape (P : ObjectProperty C) (J : Type u') [Category.{v'} J] where
   limitsOfShape_le (P J) : P.limitsOfShape J ≤ P

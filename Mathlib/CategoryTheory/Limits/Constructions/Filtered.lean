@@ -174,8 +174,8 @@ namespace ProductsFromFiniteCofiltered
 
 variable [HasFiniteProducts C]
 
-/-- If `C` has finite coproducts, a functor `Discrete α ⥤ C` lifts to a functor
-`Finset (Discrete α) ⥤ C` by taking coproducts. -/
+/-- If `C` has finite products, a functor `Discrete α ⥤ C` lifts to a functor
+`(Finset (Discrete α))ᵒᵖ ⥤ C` by taking products. -/
 @[simps!]
 def liftToFinsetObj (F : Discrete α ⥤ C) : (Finset (Discrete α))ᵒᵖ ⥤ C where
   obj s := ∏ᶜ (fun x : s.unop => F.obj x)
@@ -183,8 +183,8 @@ def liftToFinsetObj (F : Discrete α ⥤ C) : (Finset (Discrete α))ᵒᵖ ⥤ C
     Pi.π (fun (x : { x // x ∈ Y.unop }) => F.obj x) ⟨y, h.unop.down.down y.2⟩
 
 
-/-- If `C` has finite coproducts and filtered colimits, we can construct arbitrary coproducts by
-taking the colimit of the diagram formed by the coproducts of finite sets over the indexing type. -/
+/-- If `C` has finite products and suitable limits, we can construct arbitrary products by
+taking the limit of the diagram formed by the products of finite sets over the indexing type. -/
 @[simps!]
 def liftToFinsetLimitCone [HasLimitsOfShape (Finset (Discrete α))ᵒᵖ C]
     (F : Discrete α ⥤ C) : LimitCone F where

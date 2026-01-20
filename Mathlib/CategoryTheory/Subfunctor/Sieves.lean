@@ -9,9 +9,9 @@ public import Mathlib.CategoryTheory.Subfunctor.Basic
 public import Mathlib.CategoryTheory.Sites.IsSheafFor
 
 /-!
-# Sieves attached to subpresheaves
+# Sieves attached to subfunctors
 
-Given a subpresheaf `G` of a presheaf of types `F : Cᵒᵖ ⥤ Type w` and
+Given a subfunctor `G` of a presheaf of types `F : Cᵒᵖ ⥤ Type w` and
 a section `s : F.obj U`, we define a sieve `G.sieveOfSection s : Sieve (unop U)`
 and the associated compatible family of elements with values in `G.toFunctor`.
 
@@ -27,7 +27,7 @@ open Opposite
 
 variable {C : Type u} [Category.{v} C] {F : Cᵒᵖ ⥤ Type w} (G : Subfunctor F)
 
-/-- Given a subpresheaf `G` of `F`, an `F`-section `s` on `U`, we may define a sieve of `U`
+/-- Given a subfunctor `G` of `F`, an `F`-section `s` on `U`, we may define a sieve of `U`
 consisting of all `f : V ⟶ U` such that the restriction of `s` along `f` is in `G`. -/
 @[simps]
 def sieveOfSection {U : Cᵒᵖ} (s : F.obj U) : Sieve (unop U) where
@@ -36,8 +36,8 @@ def sieveOfSection {U : Cᵒᵖ} (s : F.obj U) : Sieve (unop U) where
     simp only [op_unop, op_comp, FunctorToTypes.map_comp_apply]
     exact G.map _ hi
 
-/-- Given an `F`-section `s` on `U` and a subpresheaf `G`, we may define a family of elements in
-`G` consisting of the restrictions of `s` -/
+/-- Given an `F`-section `s` on `U` and a subfunctor `G`, we may define a family of elements in
+`G` consisting of the restrictions of `s`. -/
 def familyOfElementsOfSection {U : Cᵒᵖ} (s : F.obj U) :
     (G.sieveOfSection s).1.FamilyOfElements G.toFunctor := fun _ i hi => ⟨F.map i.op s, hi⟩
 

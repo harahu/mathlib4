@@ -29,7 +29,7 @@ universe v u
 variable {C : Type u} [Category.{v} C]
 
 set_option linter.style.whitespace false in -- manual alignment is not recognised
-/-- Factorisations of a morphism `f` as a structure, containing, one object, two morphisms,
+/-- Factorisations of a morphism `f` as a structure, containing one object, two morphisms,
 and the condition that their composition equals `f`. -/
 structure Factorisation {X Y : C} (f : X ⟶ Y) where
   /-- The midpoint of the factorisation. -/
@@ -47,7 +47,7 @@ namespace Factorisation
 
 variable {X Y : C} {f : X ⟶ Y}
 
-/-- Morphisms of `Factorisation f` consist of morphism between their midpoints and the obvious
+/-- Morphisms of `Factorisation f` consist of a morphism between their midpoints and the obvious
 commutativity conditions. -/
 @[ext]
 protected structure Hom (d e : Factorisation f) : Type (max u v) where

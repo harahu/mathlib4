@@ -39,8 +39,8 @@ variable {C : Type u₁} [Category.{v₁} C] [MonoidalCategory.{v₁} C] [Braide
 open scoped MonObj ComonObj
 
 /--
-A bimonoid object in a braided category `C` is an object that is simultaneously monoid and comonoid
-objects, and structure morphisms of them satisfy appropriate consistency conditions.
+A bimonoid object in a braided category `C` is an object that is simultaneously a monoid object and
+a comonoid object, and their structure morphisms satisfy appropriate consistency conditions.
 -/
 class BimonObj (M : C) extends MonObj M, ComonObj M where
   mul_comul (M) : μ[M] ≫ Δ[M] = (Δ[M] ⊗ₘ Δ[M]) ≫ tensorμ M M M M ≫ (μ[M] ⊗ₘ μ[M]) := by cat_disch

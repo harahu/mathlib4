@@ -112,12 +112,12 @@ section Composition
 
 variable {f₁ : a ⟶ b} {g₁ : b ⟶ a} {f₂ : b ⟶ c} {g₂ : c ⟶ b}
 
-/-- Auxiliary definition for `adjunction.comp`. -/
+/-- Auxiliary definition for `Adjunction.comp`. -/
 @[simp]
 def compUnit (adj₁ : f₁ ⊣ g₁) (adj₂ : f₂ ⊣ g₂) : 𝟙 a ⟶ (f₁ ≫ f₂) ≫ g₂ ≫ g₁ :=
   adj₁.unit ⊗≫ f₁ ◁ adj₂.unit ▷ g₁ ⊗≫ 𝟙 _
 
-/-- Auxiliary definition for `adjunction.comp`. -/
+/-- Auxiliary definition for `Adjunction.comp`. -/
 @[simp]
 def compCounit (adj₁ : f₁ ⊣ g₁) (adj₂ : f₂ ⊣ g₂) : (g₂ ≫ g₁) ≫ f₁ ≫ f₂ ⟶ 𝟙 c :=
   𝟙 _ ⊗≫ g₂ ◁ adj₁.counit ▷ f₂ ⊗≫ adj₂.counit
@@ -304,7 +304,7 @@ def getRightAdjoint (f : a ⟶ b) [IsLeftAdjoint f] : RightAdjoint f :=
 def rightAdjoint (f : a ⟶ b) [IsLeftAdjoint f] : b ⟶ a :=
   (getRightAdjoint f).right
 
-/-- Evidence that `f⁺⁺` is a right adjoint of `f`. -/
+/-- Evidence that `rightAdjoint f` is a right adjoint of `f`. -/
 def Adjunction.ofIsLeftAdjoint (f : a ⟶ b) [IsLeftAdjoint f] : f ⊣ rightAdjoint f :=
   (getRightAdjoint f).adj
 
@@ -330,7 +330,7 @@ def getLeftAdjoint (f : b ⟶ a) [IsRightAdjoint f] : LeftAdjoint f :=
 def leftAdjoint (f : b ⟶ a) [IsRightAdjoint f] : a ⟶ b :=
   (getLeftAdjoint f).left
 
-/-- Evidence that `f⁺` is a left adjoint of `f`. -/
+/-- Evidence that `leftAdjoint f` is a left adjoint of `f`. -/
 def Adjunction.ofIsRightAdjoint (f : b ⟶ a) [IsRightAdjoint f] : leftAdjoint f ⊣ f :=
   (getLeftAdjoint f).adj
 

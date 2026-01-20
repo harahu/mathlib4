@@ -12,7 +12,7 @@ public import Mathlib.Data.Set.Lattice.Image
 
 # Subfunctor of types
 
-We define subfunctors of a type-valued functors.
+We define subfunctors of type-valued functors.
 
 ## Main definition
 
@@ -32,14 +32,14 @@ namespace CategoryTheory
 variable {C : Type u} [Category.{v} C]
 
 /-- A subfunctor of a functor consists of a subset of `F.obj U` for every `U`,
-compatible with the restriction maps `F.map i`. -/
+compatible with the action of `F` on morphisms. -/
 @[ext]
 structure Subfunctor (F : C ⥤ Type w) where
-  /-- If `G` is a subfunctor of `F`, then the sections of `G` on `U` forms a subset of sections of
+  /-- If `G` is a subfunctor of `F`, then the sections of `G` on `U` form a subset of sections of
   `F` on `U`. -/
   obj : ∀ U, Set (F.obj U)
-  /-- If `G` is a subfunctor of `F` and `i : U ⟶ V`, then for each `G`-sections on `U` `x`,
-  `F i x` is in `F(V)`. -/
+  /-- If `G` is a subfunctor of `F` and `i : U ⟶ V`, then for each `G`-section `x` on `U`,
+  `F i x` is in `G.obj V`. -/
   map : ∀ {U V : C} (i : U ⟶ V), obj U ⊆ F.map i ⁻¹' obj V
 
 @[deprecated (since := "2025-12-11")] alias Subpresheaf := Subfunctor
