@@ -10,11 +10,11 @@ public import Mathlib.Data.Nat.Prime.Basic
 public import Mathlib.NumberTheory.Zsqrtd.Basic
 
 /-!
-# Pell's equation and Matiyasevic's theorem
+# Pell's equation and Matiyasevič's theorem
 
 This file solves Pell's equation, i.e. integer solutions to `x ^ 2 - d * y ^ 2 = 1`
 *in the special case that `d = a ^ 2 - 1`*.
-This is then applied to prove Matiyasevic's theorem that the power
+This is then applied to prove Matiyasevič's theorem that the power
 function is Diophantine, which is the last key ingredient in the solution to Hilbert's tenth
 problem. For the definition of Diophantine function, see `NumberTheory.Dioph`.
 
@@ -31,22 +31,22 @@ For results on Pell's equation for arbitrary (positive, non-square) `d`, see
 * `eq_pell` shows that every solution to Pell's equation is recursively obtained using `pell`
 * `matiyasevic` shows that a certain system of Diophantine equations has a solution if and only if
   the first variable is the `x`-component in a solution to Pell's equation - the key step towards
-  Hilbert's tenth problem in Davis' version of Matiyasevic's theorem.
+  Hilbert's tenth problem in Davis' version of Matiyasevič's theorem.
 * `eq_pow_of_pell` shows that the power function is Diophantine.
 
 ## Implementation notes
 
-The proof of Matiyasevic's theorem doesn't follow Matiyasevic's original account of using Fibonacci
+The proof of Matiyasevič's theorem doesn't follow Matiyasevič's original account of using Fibonacci
 numbers but instead Davis' variant of using solutions to Pell's equation.
 
 ## References
 
-* [M. Carneiro, _A Lean formalization of Matiyasevič's theorem_][carneiro2018matiyasevic]
+* [M. Carneiro, _A Lean formalization of Matiyasevič's Theorem_][carneiro2018matiyasevic]
 * [M. Davis, _Hilbert's tenth problem is unsolvable_][MR317916]
 
 ## Tags
 
-Pell's equation, Matiyasevic's theorem, Hilbert's tenth problem
+Pell's equation, Matiyasevich's theorem, Matiyasevič's theorem, Hilbert's tenth problem
 
 -/
 

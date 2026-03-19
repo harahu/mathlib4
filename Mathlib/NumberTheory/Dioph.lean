@@ -11,11 +11,11 @@ public import Mathlib.Data.Vector3
 public import Mathlib.NumberTheory.PellMatiyasevic
 
 /-!
-# Diophantine functions and Matiyasevic's theorem
+# Diophantine functions and Matiyasevič's theorem
 
 Hilbert's tenth problem asked whether there exists an algorithm which for a given integer polynomial
 determines whether this polynomial has integer solutions. It was answered in the negative in 1970,
-the final step being completed by Matiyasevic who showed that the power function is Diophantine.
+the final step being completed by Matiyasevič who showed that the power function is Diophantine.
 
 Here a function is called Diophantine if its graph is Diophantine as a set. A subset `S ⊆ ℕ ^ α` in
 turn is called Diophantine if there exists an integer polynomial on `α ⊕ β` such that `v ∈ S` iff
@@ -34,16 +34,16 @@ there exists `t : ℕ^β` with `p (v, t) = 0`.
 ## Main statements
 
 * `pell_dioph` states that solutions to Pell's equation form a Diophantine set.
-* `pow_dioph` states that the power function is Diophantine, a version of Matiyasevic's theorem.
+* `pow_dioph` states that the power function is Diophantine, a version of Matiyasevič's theorem.
 
 ## References
 
-* [M. Carneiro, _A Lean formalization of Matiyasevic's theorem_][carneiro2018matiyasevic]
+* [M. Carneiro, _A Lean formalization of Matiyasevič's Theorem_][carneiro2018matiyasevic]
 * [M. Davis, _Hilbert's tenth problem is unsolvable_][MR317916]
 
 ## Tags
 
-Matiyasevic's theorem, Hilbert's tenth problem
+Matiyasevich's theorem, Matiyasevič's theorem, Hilbert's tenth problem
 
 ## TODO
 
@@ -673,7 +673,7 @@ theorem xn_dioph : DiophPFun fun v : Vector3 ℕ 2 => ⟨1 < v &0, fun h => xn h
   (diophPFun_vec _).2 <|
     Dioph.ext this fun _ => ⟨fun ⟨_, h, xe, _⟩ => ⟨h, xe⟩, fun ⟨h, xe⟩ => ⟨_, h, xe, rfl⟩⟩
 
-/-- A version of **Matiyasevic's theorem** -/
+/-- A version of **Matiyasevič's theorem** -/
 theorem pow_dioph {f g : (α → ℕ) → ℕ} (df : DiophFn f) (dg : DiophFn g) :
     DiophFn fun v => f v ^ g v := by
   have : Dioph {v : Vector3 ℕ 3 |
