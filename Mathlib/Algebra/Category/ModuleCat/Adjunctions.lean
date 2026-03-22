@@ -11,6 +11,8 @@ public import Mathlib.LinearAlgebra.DirectSum.Finsupp
 public import Mathlib.CategoryTheory.Linear.LinearFunctor
 
 /-!
+# Free-forgetful adjunction for `R`-modules
+
 The functor of forming finitely supported functions on a type with values in a `[Ring R]`
 is the left adjoint of
 the forgetful functor from `R`-modules to types.

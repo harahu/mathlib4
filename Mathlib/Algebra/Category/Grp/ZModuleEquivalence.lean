@@ -8,6 +8,8 @@ module
 public import Mathlib.Algebra.Category.ModuleCat.Basic
 
 /-!
+# Equivalence between `ℤ`-modules and additive commutative groups
+
 The forgetful functor from ℤ-modules to additive commutative groups is
 an equivalence of categories.
 
