@@ -17,7 +17,7 @@ This file contains theorems about bitvectors which can only be stated in Mathlib
 because they refer to other notions defined in Mathlib.
 
 Please do not extend this file further: material about BitVec needed in downstream projects
-can either be PR'd to Lean, or kept downstream if it also relies on Mathlib.
+can either be submitted to Lean in a PR, or kept downstream if it also relies on Mathlib.
 -/
 
 @[expose] public section

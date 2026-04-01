@@ -17,7 +17,7 @@ public import Mathlib.Tactic.SplitIfs
 
 This typeclass is primarily for use by homomorphisms like `MonoidHom` and `LinearMap`.
 
-There is the "D"ependent version `DFunLike` and the non-dependent version `FunLike`.
+There is also the dependent version `DFunLike` and the non-dependent version `FunLike`.
 
 ## Basic usage of `DFunLike` and `FunLike`
 
