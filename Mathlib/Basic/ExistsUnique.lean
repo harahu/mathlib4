@@ -58,12 +58,12 @@ However, it does *not* merge binders.
 @[app_unexpander ExistsUnique] meta def unexpandExistsUnique : Lean.PrettyPrinter.Unexpander
   | `($(_) fun $x:ident ↦ $b)                      => `(∃! $x:ident, $b)
   | `($(_) fun ($x:ident : $t) ↦ $b)               => `(∃! $x:ident : $t, $b)
-  | _                                               => throw ()
+  | _                                              => throw ()
 
 /--
 `∃! x ∈ s, p x` means `∃! x, x ∈ s ∧ p x`, which is to say that there exists a unique `x ∈ s`
 such that `p x`.
-Similarly, notations such as `∃! x ≤ n, p n` are supported,
+Similarly, notations such as `∃! x ≤ n, p x` are supported,
 using any relation defined using the `binder_predicate` command.
 -/
 syntax "∃! " binderIdent binderPred ", " term : term

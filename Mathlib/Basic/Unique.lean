@@ -39,7 +39,6 @@ In other words, a type that is `Inhabited` and a `Subsingleton`.
 The typeclass `Unique α` is implemented as a type,
 rather than a `Prop`-valued predicate,
 for good definitional properties of the default term.
-
 -/
 
 @[expose] public section
@@ -73,7 +72,7 @@ theorem unique_subtype_iff_existsUnique {α} (p : α → Prop) :
 /-- Given an explicit `a : α` with `Subsingleton α`, we can construct
 a `Unique α` instance. This is a def because the typeclass search cannot
 arbitrarily invent the `a : α` term. Nevertheless, these instances are all
-equivalent by `Unique.Subsingleton.unique`.
+equivalent by `Unique.subsingleton_unique`.
 
 See note [reducible non-instances]. -/
 abbrev uniqueOfSubsingleton {α : Sort*} [Subsingleton α] (a : α) : Unique α where
@@ -218,7 +217,7 @@ section Pi
 
 variable {ι : Sort*} {α : ι → Sort*}
 
-/-- Given one value over a unique, we get a dependent function. -/
+/-- Given one value over a unique index type, we get a dependent function. -/
 def uniqueElim [Unique ι] (x : α (default : ι)) (i : ι) : α i := by
   rw [Unique.eq_default i]
   exact x
