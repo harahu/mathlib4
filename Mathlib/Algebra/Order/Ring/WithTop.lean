@@ -24,7 +24,7 @@ namespace WithTop
 variable [DecidableEq α]
 
 section MulZeroClass
-variable [MulZeroClass α] {a b : WithTop α}
+variable [MulZeroClass α] {a b c : WithTop α}
 
 @[to_dual]
 instance : MulZeroClass (WithTop α) where
@@ -71,11 +71,20 @@ lemma mul_def (a b : WithTop α) :
 lemma mul_eq_top_iff : a * b = ⊤ ↔ a ≠ 0 ∧ b = ⊤ ∨ a = ⊤ ∧ b ≠ 0 := by rw [mul_def]; aesop
 
 @[to_dual]
+lemma mul_coe_eq_map {b : α} (hb : b ≠ 0) (a : WithTop α) : a * b = a.map (· * b) := by
+  cases a <;> simp [top_mul, hb, ← coe_mul]
+
+@[to_dual]
+lemma coe_mul_eq_map {a : α} (ha : a ≠ 0) (b : WithTop α) :
+    (a : WithTop α) * b = b.map (a * ·) := by
+  cases b <;> simp [mul_top, ha, ← coe_mul]
+
+@[to_dual (attr := deprecated mul_coe_eq_map (since := "2026-09-03"))]
 lemma mul_coe_eq_bind {b : α} (hb : b ≠ 0) : ∀ a, (a * b : WithTop α) = a.bind fun a ↦ ↑(a * b)
   | ⊤ => by simp [top_mul, hb]; rfl
   | (a : α) => rfl
 
-@[to_dual]
+@[to_dual (attr := deprecated coe_mul_eq_map (since := "2026-09-03"))]
 lemma coe_mul_eq_bind {a : α} (ha : a ≠ 0) : ∀ b, (a * b : WithTop α) = b.bind fun b ↦ ↑(a * b)
   | ⊤ => by simp [ha]; rfl
   | (b : α) => rfl
@@ -104,6 +113,22 @@ instance instNoZeroDivisors [NoZeroDivisors α] : NoZeroDivisors (WithTop α) :=
   rcases Option.mem_map₂_iff.1 h₁ with ⟨a, b, (rfl : _ = _), (rfl : _ = _), hab⟩
   exact h₂ ((eq_zero_or_eq_zero_of_mul_eq_zero hab).imp (congr_arg some) (congr_arg some))
 
+@[to_dual]
+protected theorem mul_right_inj [IsLeftCancelMulZero α] (h₀ : a ≠ 0) (hinf : a ≠ ⊤) :
+    a * b = a * c ↔ b = c := by
+  lift a to α using hinf
+  have h₀' : a ≠ 0 := by simpa using h₀
+  simp only [coe_mul_eq_map h₀']
+  exact (map_injective (mul_right_injective₀ h₀')).eq_iff
+
+@[to_dual]
+protected theorem mul_left_inj [IsRightCancelMulZero α] (h₀ : c ≠ 0) (hinf : c ≠ ⊤) :
+    a * c = b * c ↔ a = b := by
+  lift c to α using hinf
+  have h₀' : c ≠ 0 := by simpa using h₀
+  simp only [mul_coe_eq_map h₀']
+  exact (map_injective (mul_left_injective₀ h₀')).eq_iff
+
 variable [Preorder α]
 
 protected lemma mul_right_strictMono [PosMulStrictMono α] (h₀ : 0 < a) (hinf : a ≠ ⊤) :
@@ -127,6 +152,34 @@ protected lemma mul_left_strictMono [MulPosStrictMono α] (h₀ : 0 < a) (hinf :
   | (c : α) =>
   simp only [coe_pos, coe_lt_coe, ← coe_mul, gt_iff_lt] at *
   gcongr
+
+protected lemma mul_le_mul_iff_right [PosMulMono α] [PosMulReflectLE α] (h₀ : 0 < a)
+    (hinf : a ≠ ⊤) : a * b ≤ a * c ↔ b ≤ c := by
+  lift a to α using hinf
+  have h₀' : (0 : α) < a := by simpa using h₀
+  simp only [coe_mul_eq_map h₀'.ne']
+  exact map_le_iff _ (mul_le_mul_iff_right₀ h₀')
+
+protected lemma mul_le_mul_iff_left [MulPosMono α] [MulPosReflectLE α] (h₀ : 0 < c)
+    (hinf : c ≠ ⊤) : a * c ≤ b * c ↔ a ≤ b := by
+  lift c to α using hinf
+  have h₀' : (0 : α) < c := by simpa using h₀
+  simp only [mul_coe_eq_map h₀'.ne']
+  exact map_le_iff _ (mul_le_mul_iff_left₀ h₀')
+
+protected lemma mul_lt_mul_iff_right [PosMulStrictMono α] [PosMulReflectLT α] (h₀ : 0 < a)
+    (hinf : a ≠ ⊤) : a * b < a * c ↔ b < c := by
+  lift a to α using hinf
+  have h₀' : (0 : α) < a := by simpa using h₀
+  simp only [coe_mul_eq_map h₀'.ne']
+  exact map_lt_iff _ (mul_lt_mul_iff_right₀ h₀')
+
+protected lemma mul_lt_mul_iff_left [MulPosStrictMono α] [MulPosReflectLT α] (h₀ : 0 < c)
+    (hinf : c ≠ ⊤) : a * c < b * c ↔ a < b := by
+  lift c to α using hinf
+  have h₀' : (0 : α) < c := by simpa using h₀
+  simp only [mul_coe_eq_map h₀'.ne']
+  exact map_lt_iff _ (mul_lt_mul_iff_left₀ h₀')
 
 end MulZeroClass
 
@@ -234,7 +287,7 @@ instance instNonUnitalNonAssocSemiring [NonUnitalNonAssocSemiring α]
         simp [ha, this]
     | coe c =>
       by_cases hc : c = 0; · simp [hc]
-      simp only [mul_coe_eq_bind hc]
+      simp only [mul_coe_eq_map hc]
       cases a <;> cases b <;> try rfl
       exact congr_arg some (add_mul _ _ _)
   left_distrib c a b := by
@@ -247,7 +300,7 @@ instance instNonUnitalNonAssocSemiring [NonUnitalNonAssocSemiring α]
         simp [ha, this]
     | coe c =>
       by_cases hc : c = 0; · simp [hc]
-      simp only [coe_mul_eq_bind hc]
+      simp only [coe_mul_eq_map hc]
       cases a <;> cases b <;> try rfl
       exact congr_arg some (mul_add _ _ _)
 

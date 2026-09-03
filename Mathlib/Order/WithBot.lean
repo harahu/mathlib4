@@ -479,6 +479,10 @@ lemma unbotA_le_iff [Nonempty α] (hx : x ≠ ⊥) : x.unbotA ≤ a ↔ x ≤ a 
 @[to_dual]
 lemma unbotA_mono [Nonempty α] (hy : x ≠ ⊥) (h : x ≤ y) : x.unbotA ≤ y.unbotA := unbotD_mono hy h
 
+@[to_dual]
+lemma map_le_iff [LE β] (f : α → β) (le_iff : ∀ {a b}, f a ≤ f b ↔ a ≤ b) :
+    x.map f ≤ y.map f ↔ x ≤ y := by cases x <;> cases y <;> simp [le_iff]
+
 end LE
 
 section LT
@@ -527,6 +531,10 @@ lemma lt_unbotA_iff [Nonempty α] (hx : x ≠ ⊥) : a < x.unbotA ↔ a < x := l
 @[to_dual lt_untopA_iff]
 lemma unbotA_lt_iff [Nonempty α] (hx : x ≠ ⊥) : x.unbotA < a ↔ x < a := by
   lift x to α using hx; simp
+
+@[to_dual]
+lemma map_lt_iff [LT β] (f : α → β) (lt_iff : ∀ {a b}, f a < f b ↔ a < b) :
+    x.map f < y.map f ↔ x < y := by cases x <;> cases y <;> simp [lt_iff]
 
 end LT
 
@@ -582,10 +590,6 @@ theorem strictMono_map_iff {f : α → β} :
 
 @[to_dual]
 alias ⟨_, _root_.StrictMono.withBot_map⟩ := strictMono_map_iff
-
-@[to_dual]
-lemma map_le_iff (f : α → β) (mono_iff : ∀ {a b}, f a ≤ f b ↔ a ≤ b) :
-    x.map f ≤ y.map f ↔ x ≤ y := by cases x <;> cases y <;> simp [mono_iff]
 
 @[to_dual coe_untopD_le]
 theorem le_coe_unbotD (x : WithBot α) (b : α) : x ≤ x.unbotD b := by cases x <;> simp
