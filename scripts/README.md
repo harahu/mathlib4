@@ -40,6 +40,37 @@ file used by the library's own linters.
 
   **Requirements:** `gh` (GitHub CLI) installed and authenticated (`gh auth login`).
 
+- `find_duplicate_statements.lean`, `group_duplicate_statements.py`, `find_common_generalization.lean`
+
+  A three-stage pipeline for finding groups of sibling lemmas that state the same thing under
+  different typeclass hypotheses, and for proposing the weaker class they could share. This is
+  the refactor carried out in [#41457](https://github.com/leanprover-community/mathlib4/pull/41457),
+  which replaced five copies of `mul_eq_one` by one lemma over `IsDedekindFiniteMonoid`.
+
+  ```
+  lake env lean scripts/find_duplicate_statements.lean               # -> dedup_statements.tsv
+  scripts/group_duplicate_statements.py dedup_statements.tsv \
+      --groups groups.tsv --report
+  lake env lean scripts/find_common_generalization.lean              # -> dedup_common_classes.tsv
+  ```
+
+  The two Lean scripts read the fully-imported `Mathlib` environment (like `#stacks_tags`), so
+  they are invoked with `lake env lean` rather than `lake exe`, and must be run from the
+  repository root. Output paths are taken from `DEDUP_OUT`, `DEDUP_GROUPS` and
+  `DEDUP_COMMON_OUT`. Stage one takes a few minutes and writes a large file (~300MB).
+
+  Stage one hashes each theorem's statement with all typeclass information erased, so that
+  theorems stating the same thing collide. Stage two groups the rows and filters out the known
+  non-opportunities (aliases, forwarders, instance-provision lemmas). Stage three does two passes
+  per group: it reports any *strict subsumption* (one member's context already supplies another
+  member's hypotheses, so that member is redundant and can just be deleted), and it reports the
+  classes — Prop-valued mixins and maximal structure classes, in separate columns — that are
+  synthesizable in every member's context *and* relevant to the statement. It self-tests on every
+  run by rediscovering `IsDedekindFiniteMonoid` from the four hypothesis sets #41457 collapsed.
+
+  Read the subsumption column first: it is a certainty. A suggested class is only a lead — it
+  shows the class is available, not that the lemma's proof needs only it.
+
 **Tools for manual maintenance**
 - `fix_unused.py`
   Bulk processing of unused variable warnings, replacing them with `_`.
