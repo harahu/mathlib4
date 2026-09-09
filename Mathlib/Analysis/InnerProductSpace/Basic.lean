@@ -54,12 +54,8 @@ local postfix:90 "†" => starRingEnd _
 
 export InnerProductSpace (norm_sq_eq_re_inner)
 
-@[simp]
-theorem inner_conj_symm (x y : E) : ⟪y, x⟫† = ⟪x, y⟫ :=
-  InnerProductSpace.conj_inner_symm _ _
-
 theorem real_inner_comm (x y : F) : ⟪y, x⟫_ℝ = ⟪x, y⟫_ℝ :=
-  @inner_conj_symm ℝ _ _ _ _ x y
+  inner_conj_symm x y
 
 theorem inner_eq_zero_symm {x y : E} : ⟪x, y⟫ = 0 ↔ ⟪y, x⟫ = 0 := by
   rw [← inner_conj_symm]
@@ -67,20 +63,6 @@ theorem inner_eq_zero_symm {x y : E} : ⟪x, y⟫ = 0 ↔ ⟪y, x⟫ = 0 := by
 
 instance {ι : Sort*} (v : ι → E) : Std.Symm fun i j => ⟪v i, v j⟫ = 0 where
   symm _ _ := inner_eq_zero_symm.1
-
-theorem inner_self_im (x : E) : im ⟪x, x⟫ = 0 := by
-  rw [← @ofReal_inj 𝕜, im_eq_conj_sub]; simp
-
-theorem inner_add_left (x y z : E) : ⟪x + y, z⟫ = ⟪x, z⟫ + ⟪y, z⟫ :=
-  InnerProductSpace.add_left _ _ _
-
-theorem inner_add_right (x y z : E) : ⟪x, y + z⟫ = ⟪x, y⟫ + ⟪x, z⟫ := by
-  rw [← inner_conj_symm, inner_add_left, map_add]
-  simp only [inner_conj_symm]
-
-theorem inner_re_symm (x y : E) : re ⟪x, y⟫ = re ⟪y, x⟫ := by rw [← inner_conj_symm, conj_re]
-
-theorem inner_im_symm (x y : E) : im ⟪x, y⟫ = -im ⟪y, x⟫ := by rw [← inner_conj_symm, conj_im]
 
 section Algebra
 variable {𝕝 : Type*} [CommSemiring 𝕝] [StarRing 𝕝] [Algebra 𝕝 𝕜] [Module 𝕝 E]
@@ -103,26 +85,17 @@ lemma inner_smul_right_eq_smul (x y : E) (r : 𝕝) : ⟪x, r • y⟫ = r • �
 
 end Algebra
 
-/-- See `inner_smul_left_eq_star_smul` for the case of a general algebra action. -/
-theorem inner_smul_left (x y : E) (r : 𝕜) : ⟪r • x, y⟫ = r† * ⟪x, y⟫ :=
-  inner_smul_left_eq_star_smul ..
-
 theorem real_inner_smul_left (x y : F) (r : ℝ) : ⟪r • x, y⟫_ℝ = r * ⟪x, y⟫_ℝ :=
   inner_smul_left _ _ _
 
 theorem inner_smul_real_left (x y : E) (r : ℝ) : ⟪(r : 𝕜) • x, y⟫ = r • ⟪x, y⟫ := by
   rw [inner_smul_left, conj_ofReal, Algebra.smul_def]
 
-/-- See `inner_smul_right_eq_smul` for the case of a general algebra action. -/
-theorem inner_smul_right (x y : E) (r : 𝕜) : ⟪x, r • y⟫ = r * ⟪x, y⟫ :=
-  inner_smul_right_eq_smul ..
-
 theorem real_inner_smul_right (x y : F) (r : ℝ) : ⟪x, r • y⟫_ℝ = r * ⟪x, y⟫_ℝ :=
   inner_smul_right _ _ _
 
 theorem inner_smul_real_right (x y : E) (r : ℝ) : ⟪x, (r : 𝕜) • y⟫ = r • ⟪x, y⟫ := by
   rw [inner_smul_right, Algebra.smul_def]
-
 
 variable (𝕜)
 
@@ -185,28 +158,14 @@ protected theorem DFinsupp.inner_sum {ι : Type*} [DecidableEq ι] {α : ι → 
     (l : Π₀ i, α i) (x : E) : ⟪x, l.sum f⟫ = l.sum fun i a => ⟪x, f i a⟫ := by
   simp +contextual only [DFinsupp.sum, inner_sum]
 
-@[simp]
-theorem inner_zero_left (x : E) : ⟪0, x⟫ = 0 := by
-  rw [← zero_smul 𝕜 (0 : E), inner_smul_left, map_zero, zero_mul]
-
 theorem inner_re_zero_left (x : E) : re ⟪0, x⟫ = 0 := by
   simp only [inner_zero_left, map_zero]
-
-@[simp]
-theorem inner_zero_right (x : E) : ⟪x, 0⟫ = 0 := by
-  rw [← inner_conj_symm, inner_zero_left, map_zero]
 
 theorem inner_re_zero_right (x : E) : re ⟪x, 0⟫ = 0 := by
   simp only [inner_zero_right, map_zero]
 
-theorem inner_self_nonneg {x : E} : 0 ≤ re ⟪x, x⟫ :=
-  PreInnerProductSpace.toCore.re_inner_nonneg x
-
 theorem real_inner_self_nonneg {x : F} : 0 ≤ ⟪x, x⟫_ℝ :=
-  @inner_self_nonneg ℝ F _ _ _ x
-
-theorem inner_self_ofReal_re (x : E) : (re ⟪x, x⟫ : 𝕜) = ⟪x, x⟫ :=
-  ((RCLike.is_real_TFAE (⟪x, x⟫ : 𝕜)).out 3 4).2 (inner_self_im (𝕜 := 𝕜) x)
+  inner_self_nonneg (𝕜 := ℝ)
 
 @[simp]
 theorem inner_self_eq_norm_sq_to_K (x : E) : ⟪x, x⟫ = (‖x‖ : 𝕜) ^ 2 := by
@@ -222,65 +181,26 @@ theorem inner_self_ofReal_norm (x : E) : (‖⟪x, x⟫‖ : 𝕜) = ⟪x, x⟫ 
   exact inner_self_ofReal_re _
 
 theorem real_inner_self_abs (x : F) : |⟪x, x⟫_ℝ| = ⟪x, x⟫_ℝ :=
-  @inner_self_ofReal_norm ℝ F _ _ _ x
-
-theorem norm_inner_symm (x y : E) : ‖⟪x, y⟫‖ = ‖⟪y, x⟫‖ := by rw [← inner_conj_symm, norm_conj]
-
-@[simp]
-theorem inner_neg_left (x y : E) : ⟪-x, y⟫ = -⟪x, y⟫ := by
-  rw [← neg_one_smul 𝕜 x, inner_smul_left]
-  simp
-
-@[simp]
-theorem inner_neg_right (x y : E) : ⟪x, -y⟫ = -⟪x, y⟫ := by
-  rw [← inner_conj_symm, inner_neg_left]; simp only [map_neg, inner_conj_symm]
+  inner_self_ofReal_norm x
 
 theorem inner_neg_neg (x y : E) : ⟪-x, -y⟫ = ⟪x, y⟫ := by simp
 
 theorem inner_self_conj (x : E) : ⟪x, x⟫† = ⟪x, x⟫ := inner_conj_symm _ _
 
-theorem inner_sub_left (x y z : E) : ⟪x - y, z⟫ = ⟪x, z⟫ - ⟪y, z⟫ := by
-  simp [sub_eq_add_neg, inner_add_left]
-
-theorem inner_sub_right (x y z : E) : ⟪x, y - z⟫ = ⟪x, y⟫ - ⟪x, z⟫ := by
-  simp [sub_eq_add_neg, inner_add_right]
-
-theorem inner_mul_symm_re_eq_norm (x y : E) : re (⟪x, y⟫ * ⟪y, x⟫) = ‖⟪x, y⟫ * ⟪y, x⟫‖ := by
-  rw [← inner_conj_symm, mul_comm]
-  exact re_eq_norm_of_mul_conj ⟪y, x⟫
-
-/-- Expand `⟪x + y, x + y⟫` -/
-theorem inner_add_add_self (x y : E) : ⟪x + y, x + y⟫ = ⟪x, x⟫ + ⟪x, y⟫ + ⟪y, x⟫ + ⟪y, y⟫ := by
-  simp only [inner_add_left, inner_add_right]; ring
-
 /-- Expand `⟪x + y, x + y⟫_ℝ` -/
 theorem real_inner_add_add_self (x y : F) :
     ⟪x + y, x + y⟫_ℝ = ⟪x, x⟫_ℝ + 2 * ⟪x, y⟫_ℝ + ⟪y, y⟫_ℝ := by
-  have : ⟪y, x⟫_ℝ = ⟪x, y⟫_ℝ := by rw [← inner_conj_symm]; rfl
-  simp only [inner_add_add_self, this, add_left_inj]
-  ring
-
--- Expand `⟪x - y, x - y⟫`
-theorem inner_sub_sub_self (x y : E) : ⟪x - y, x - y⟫ = ⟪x, x⟫ - ⟪x, y⟫ - ⟪y, x⟫ + ⟪y, y⟫ := by
-  simp only [inner_sub_left, inner_sub_right]; ring
+  linear_combination inner_add_add_self (𝕜 := ℝ) x y + real_inner_comm x y
 
 /-- Expand `⟪x - y, x - y⟫_ℝ` -/
 theorem real_inner_sub_sub_self (x y : F) :
     ⟪x - y, x - y⟫_ℝ = ⟪x, x⟫_ℝ - 2 * ⟪x, y⟫_ℝ + ⟪y, y⟫_ℝ := by
-  have : ⟪y, x⟫_ℝ = ⟪x, y⟫_ℝ := by rw [← inner_conj_symm]; rfl
-  simp only [inner_sub_sub_self, this, add_left_inj]
-  ring
+  linear_combination inner_sub_sub_self (𝕜 := ℝ) x y - real_inner_comm x y
 
 /-- Parallelogram law -/
 theorem parallelogram_law {x y : E} : ⟪x + y, x + y⟫ + ⟪x - y, x - y⟫ = 2 * (⟪x, x⟫ + ⟪y, y⟫) := by
   simp only [inner_add_add_self, inner_sub_sub_self]
   ring
-
-/-- **Cauchy–Schwarz inequality**. -/
-@[wikidata Q190546]
-theorem inner_mul_inner_self_le (x y : E) : ‖⟪x, y⟫‖ * ‖⟪y, x⟫‖ ≤ re ⟪x, x⟫ * re ⟪y, y⟫ :=
-  letI : PreInnerProductSpace.Core 𝕜 E := PreInnerProductSpace.toCore
-  InnerProductSpace.Core.inner_mul_inner_self_le x y
 
 /-- Cauchy–Schwarz inequality for real inner products. -/
 theorem real_inner_mul_inner_self_le (x y : F) : ⟪x, y⟫_ℝ * ⟪x, y⟫_ℝ ≤ ⟪x, x⟫_ℝ * ⟪y, y⟫_ℝ :=
@@ -288,7 +208,7 @@ theorem real_inner_mul_inner_self_le (x y : F) : ⟪x, y⟫_ℝ * ⟪x, y⟫_ℝ
     ⟪x, y⟫_ℝ * ⟪x, y⟫_ℝ ≤ ‖⟪x, y⟫_ℝ‖ * ‖⟪y, x⟫_ℝ‖ := by
       rw [real_inner_comm y, ← norm_mul]
       exact le_abs_self _
-    _ ≤ ⟪x, x⟫_ℝ * ⟪y, y⟫_ℝ := @inner_mul_inner_self_le ℝ _ _ _ _ x y
+    _ ≤ ⟪x, x⟫_ℝ * ⟪y, y⟫_ℝ := inner_mul_inner_self_le x y
 
 theorem inner_eq_ofReal_norm_sq_left_iff {v w : E} : ⟪v, w⟫_𝕜 = ‖v‖ ^ 2 ↔ ⟪v, v - w⟫_𝕜 = 0 := by
   rw [inner_sub_right, sub_eq_zero, inner_self_eq_norm_sq_to_K, eq_comm]
@@ -452,10 +372,10 @@ theorem norm_sub_mul_self_real (x y : F) :
   simpa using h
 
 /-- Cauchy–Schwarz inequality with norm -/
-theorem norm_inner_le_norm (x y : E) : ‖⟪x, y⟫‖ ≤ ‖x‖ * ‖y‖ := by
-  rw [norm_eq_sqrt_re_inner (𝕜 := 𝕜) x, norm_eq_sqrt_re_inner (𝕜 := 𝕜) y]
-  let : PreInnerProductSpace.Core 𝕜 E := PreInnerProductSpace.toCore
-  exact InnerProductSpace.Core.norm_inner_le_norm x y
+theorem norm_inner_le_norm (x y : E) : ‖⟪x, y⟫‖ ≤ ‖x‖ * ‖y‖ :=
+  nonneg_le_nonneg_of_sq_le_sq (by positivity) <| by
+    simpa only [norm_inner_symm y x, inner_self_eq_norm_mul_norm (𝕜 := 𝕜), mul_mul_mul_comm]
+      using inner_mul_inner_self_le (𝕜 := 𝕜) x y
 
 theorem nnnorm_inner_le_nnnorm (x y : E) : ‖⟪x, y⟫‖₊ ≤ ‖x‖₊ * ‖y‖₊ :=
   norm_inner_le_norm x y
@@ -721,11 +641,9 @@ theorem norm_inner_eq_norm_tfae (x y : E) :
     rw [← sq_eq_sq₀, mul_pow, ← mul_right_inj' this, eq_comm, ← sub_eq_zero, ← mul_sub] at h <;>
       try positivity
     simp only [@norm_sq_eq_re_inner 𝕜] at h
-    let : InnerProductSpace.Core 𝕜 E := InnerProductSpace.toCore
-    erw [← InnerProductSpace.Core.cauchy_schwarz_aux (𝕜 := 𝕜) (F := E)] at h
-    rw [InnerProductSpace.Core.normSq_eq_zero, sub_eq_zero] at h
-    rw [div_eq_inv_mul, mul_smul, h, inv_smul_smul₀]
-    rwa [inner_self_ne_zero]
+    rw [← IsInnerProduct.cauchy_schwarz_aux (𝕜 := 𝕜)] at h
+    replace h := sub_eq_zero.mp (re_inner_self_nonpos.mp h.le)
+    rw [div_eq_inv_mul, mul_smul, h, inv_smul_smul₀ (inner_self_ne_zero.2 hx₀)]
   tfae_have 2 → 3 := fun h => h.imp_right fun h' => ⟨_, h'⟩
   tfae_have 3 → 1 := by
     rintro (rfl | ⟨r, rfl⟩) <;>
